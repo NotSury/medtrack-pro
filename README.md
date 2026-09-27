@@ -89,3 +89,11 @@ Gemini is used for:
 - Personalised medication adherence tips
 - Clinician dashboard insights
 - Drug interaction review
+
+
+### Home Screen
+<img width="1080" height="2424" alt="Screenshot1" src="https://github.com/user-attachments/assets/a11f76e8-56d1-4b5d-8eb4-d70510f7bc5f" />
+
+### Drug Interaction Review
+<img width="1080" height="2424" alt="Screenshot2" src="https://github.com/user-attachments/assets/44e10884-fbac-4c17-9d96-ddfd910a5eb3" />
+
