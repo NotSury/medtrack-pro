@@ -1,28 +1,91 @@
-# MedTrack Pro - README
+# MedTrack Pro
 
-## GenAI Declaration
+MedTrack Pro is an Android medication management application built with Kotlin and Jetpack Compose.
 
-This app uses the Google Gemini API through Google AI Studio:
+The app combines local data persistence, API integration, MVVM architecture, and GenAI features to help users manage medications, symptoms, and personalised health-related information.
 
-https://aistudio.google.com/
+## Features
 
-Gemini is used in the following app features:
+- Multi-user login and account management
+- Persistent user sessions
+- Medication tracking and management
+- Symptom logging and history
+- Room database for local data storage
+- OpenFDA drug information lookup
+- Personalised GenAI medication tips
+- Clinician dashboard with aggregate patient statistics
+- AI-generated clinician insights
+- AI-assisted drug interaction review
+- Persistent medication "taken" status
 
-1. MedCoach Medication Tips  
-   File: `app/src/main/java/com/surya/s35651628/medtrack/data/genai/GenAIViewModel.kt`  
-   Purpose: Generates a personalized medication adherence tip using the logged-in patient's medication list and symptom history.
+## Tech Stack
 
-2. Clinician Dashboard Insights  
-   File: `app/src/main/java/com/surya/s35651628/medtrack/data/clinician/ClinicianViewModel.kt`  
-   Purpose: Generates three aggregate, data-driven observations for the clinician dashboard using medication and symptom statistics.
+- Kotlin
+- Jetpack Compose
+- MVVM Architecture
+- Room Database
+- Retrofit
+- Coroutines
+- StateFlow
+- Google Gemini API
+- OpenFDA Drug Label API
+- Android Studio
 
-3. AI Drug Interaction Review  
-   File: `app/src/main/java/com/surya/s35651628/medtrack/data/interaction/InteractionReviewViewModel.kt`  
-   Purpose: Reviews the logged-in patient's medication combinations and generates possible interaction risk levels with short explanations.
+## Architecture
 
+The application follows the MVVM architecture pattern:
 
-## API Key
+```text
+Composable UI
+    ↓
+ViewModel
+    ↓
+Repository
+    ↓
+DAO
+    ↓
+Room Database
+```
 
-To run the GenAI features, place a Gemini API key in local.properties using this format:
-
-apiKey=YOUR_API_KEY
+The UI observes state from ViewModels, while database and network operations are handled through repositories and asynchronous coroutines.
+Core Functionality
+Medication Management
+Users can view, add, and manage medications associated with their account.
+Medication data is stored locally using Room and linked to individual users.
+Symptom Tracking
+Users can record symptoms, severity, notes, and timestamps.
+Symptom history is stored in the local database and linked to the logged-in user.
+MedCoach
+MedCoach provides:
+- Drug information lookup using the OpenFDA Drug Label API
+- Personalised medication tips generated using Google Gemini
+Patient medication and symptom information can be included in the prompt to generate more relevant responses.
+Clinician Dashboard
+The clinician dashboard provides aggregate patient information such as:
+- Total number of patients
+- Average medications per patient
+- Most common symptom category
+- Average symptom severity
+The dashboard can also send aggregated statistics to Gemini to generate data-driven observations.
+AI Drug Interaction Review
+The application can review a user's current medication combination and generate possible interaction risk levels and short explanations using Gemini.
+Database
+The application uses Room for structured local storage.
+Main entities include:
+- Patient
+- Medication
+- Symptom
+- MedCoachTips
+Relationships are maintained between users and their associated medication, symptom, and AI-generated data.
+API Integration
+OpenFDA
+The OpenFDA Drug Label API is used to retrieve medication information such as:
+- Purpose
+- Warnings
+- Dosage and administration
+Retrofit and coroutines are used for asynchronous network requests.
+Google Gemini
+Gemini is used for:
+- Personalised medication adherence tips
+- Clinician dashboard insights
+- Drug interaction review
